@@ -7,3 +7,9 @@
   margin-bottom: 46px;
   width: 60%;
 }
+.projects-container {
+  left: var(--second-margin);
+}
+.current-project {
+  left: var(--third-margin);
+}

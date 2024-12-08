@@ -1,23 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Loading.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Flip } from "gsap/all";
+import { Context } from "../contexts";
 gsap.registerPlugin(Flip);
 
 const Loading = () => {
   const [loaded, setLoaded] = useState({ value: 0 });
+  const [position, setPosition] = useState({ value: 0 });
+  const { loading, setLoading } = useContext(Context);
   useEffect(() => {
-    gsap.set(".loading-text", { x: (-1000 * window.innerWidth) / 1920 });
+    gsap.set(".loading-text", {
+      x: (-1500 * window.innerWidth) / 1920,
+      opacity: 0,
+    });
   }, []);
   useGSAP(() => {
+    gsap.fromTo(
+      ".loading-name-text",
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.4,
+        onComplete: () => {
+          gsap.set(".loading-text", { opacity: 1 });
+        },
+      }
+    );
+    gsap.fromTo(".loading-name-text", { y: 100 }, { y: 0, duration: 0.7 });
+
     gsap.to(loaded, {
       value: 100,
+      delay: 0.7,
       roundProps: "value",
-      duration: 5,
+      duration: 6,
       ease: "power2.out",
       onUpdate: () => {
         setLoaded({ value: loaded.value });
+        if (loaded.value < 100) {
+          setPosition({ value: loaded.value });
+        }
         console.log(loaded.value);
       },
       onComplete: () => {
@@ -34,6 +57,7 @@ const Loading = () => {
             gsap.set(".loading-container", { display: "none" });
           },
         });
+        setLoading(false);
       },
     });
   });
@@ -86,10 +110,11 @@ const Loading = () => {
           style={{
             position: "relative",
             transform: `translateX(${
-              ((loaded.value - 100) * 10 * window.innerWidth) / 1920
+              ((position.value - 100) * 15 * window.innerWidth) / 1920
             }px)`,
             zIndex: 0,
-            fontWeight: 6 * loaded.value - 100,
+            fontFamily: "neue-haas-unica",
+            fontWeight: 3 * loaded.value + 300,
           }}
         >
           {loaded.value}

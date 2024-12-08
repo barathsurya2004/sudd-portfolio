@@ -7,10 +7,18 @@ import About from "./Components/About";
 import Projects from "./Components/Projects";
 import Contact from "./Components/Contact";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+import gsap from "gsap";
+import { useContext } from "react";
+import { Context } from "./contexts";
+gsap.registerPlugin(ScrollTrigger);
 const App = () => {
+  const { setCurrentView, currentView, ratio } = useContext(Context);
+
+  useGSAP(() => {});
   return (
     <>
-      <Navbar />
+      {window.innerWidth > 1400 && <Navbar />}
       <Loading />
       <Hero />
       <About />

@@ -1,0 +1,9 @@
+.hero {
+  padding-left: var(--second-margin);
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    padding-left: var(--third-margin);
+  }
+}

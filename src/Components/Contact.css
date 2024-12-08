@@ -1,0 +1,21 @@
+.photo-container {
+  left: var(--second-margin);
+}
+.contact-container {
+  left: var(--third-margin);
+}
+.footer-container {
+  left: var(--second-margin);
+}
+.footer-text {
+  left: var(--third-margin);
+}
+.bassedoff {
+  position: absolute;
+  left: var(--third-margin);
+  bottom: calc(90.75 * 100vh / 1080);
+}
+.bassedoff span {
+  font-size: calc(28 * 100vw / 1920);
+  color: #495f8c;
+}

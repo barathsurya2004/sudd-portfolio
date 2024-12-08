@@ -1,8 +1,31 @@
+import { useContext } from "react";
+import { Context } from "../contexts";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import "./Contact.css";
 const Contact = () => {
+  const { setCurrentView, secondMargin, thirdMargin } = useContext(Context);
+  useGSAP(() => {
+    gsap.to(".contact", {
+      scrollTrigger: {
+        trigger: ".contact",
+        start: "top 2%",
+        end: "bottom 2%",
+        // markers: true,
+        onEnter: () => {
+          setCurrentView("Contact");
+        },
+        onEnterBack: () => {
+          setCurrentView("Contact");
+        },
+      },
+    });
+  });
   return (
     <>
       <div
         className="contact"
+        id="contact"
         style={{
           height: "100vh",
           width: "100%",
@@ -14,7 +37,6 @@ const Contact = () => {
           style={{
             position: "absolute",
             top: (334.7 * window.innerHeight) / 1080,
-            left: (500 * window.innerWidth) / 1920,
           }}
         >
           <img src="https://picsum.photos/300/400" alt="" />
@@ -24,7 +46,6 @@ const Contact = () => {
           style={{
             position: "absolute",
             top: (334.7 * window.innerHeight) / 1080,
-            left: (1107.4 * window.innerWidth) / 1920,
             paddingRight: (235.75 * window.innerWidth) / 1920,
           }}
         >
@@ -46,7 +67,6 @@ const Contact = () => {
           style={{
             position: "absolute",
             bottom: (40.8 * window.innerHeight) / 1080,
-            left: (500 * window.innerWidth) / 1920,
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
@@ -72,6 +92,38 @@ const Contact = () => {
             sudheshhimself@gmail.com
           </span>
         </div>
+        <div className="bassedoff">
+          <span
+            style={{
+              display: "block",
+            }}
+          >
+            Bassed of{" "}
+            <span
+              style={{
+                fontStyle: "italic",
+                fontWeight: 500,
+              }}
+            >
+              Hyderabad
+            </span>
+          </span>
+          <span
+            style={{
+              display: "block",
+            }}
+          >
+            Originally from{" "}
+            <span
+              style={{
+                fontStyle: "italic",
+                fontWeight: 500,
+              }}
+            >
+              Salem, India
+            </span>
+          </span>
+        </div>
         <div
           className="footer-text"
           style={{
@@ -80,7 +132,6 @@ const Contact = () => {
             fontWeight: 500,
             fontSize: (21 * window.innerWidth) / 1920,
             color: "#495f8c",
-            left: (1107.4 * window.innerWidth) / 1920,
             bottom: (37.9 * window.innerHeight) / 1080,
           }}
         >

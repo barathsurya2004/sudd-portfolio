@@ -12,6 +12,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --first-margin: calc(83.3 * 100vw / 1920);
+  --second-margin: calc(500 * 100vw / 1920);
+  --third-margin: calc(1107.4 * 100vw / 1920);
 }
 
 body {
@@ -23,4 +26,13 @@ body {
 }
 * {
   box-sizing: border-box;
+  user-select: none;
+}
+
+@media screen and (max-width: 1400px) {
+  :root {
+    --first-margin: calc(83.3 * 100vw / 1920);
+    --second-margin: calc(calc(500 * 100vw / 1920) - var(--first-margin));
+    --third-margin: calc(calc(1107.4 * 100vw / 1920) - var(--first-margin));
+  }
 }
