@@ -19,3 +19,6 @@
   font-size: calc(28 * 100vw / 1920);
   color: #495f8c;
 }
+.disclaimer {
+  left: var(--third-margin);
+}

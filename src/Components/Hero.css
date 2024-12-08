@@ -1,6 +1,9 @@
 .hero {
   padding-left: var(--second-margin);
 }
+.hero-text {
+  /* filter: invert(1); */
+}
 
 @media screen and (max-width: 768px) {
   .hero {

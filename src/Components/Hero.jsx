@@ -20,6 +20,13 @@ const Hero = () => {
     "a Movie Buff",
   ];
   useGSAP(() => {
+    const tl = gsap.timeline();
+    tl.to(".cursor", {
+      opacity: 0,
+      repeat: -1,
+      duration: 0.5,
+      yoyo: true,
+    });
     gsap.to(".hero", {
       scrollTrigger: {
         trigger: ".hero",
@@ -51,12 +58,33 @@ const Hero = () => {
           },
         })
           .to(".hero-text", {
-            duration: 0.7, // Time to pause for reading
+            duration: 1, // Time to pause for reading
           })
-          .set(".hero-text", {
+          .set(".cursor", {
             text: {
               value: "",
             },
+          })
+          .to(".hero-text", {
+            backgroundSize: "100% 100%",
+            duration: 1,
+          })
+          .set(".hero-text", {
+            delay: 0.2,
+            text: {
+              value: "",
+            },
+          })
+          .set(".cursor", {
+            text: {
+              value: "|",
+            },
+          })
+          .set(".hero-text", {
+            backgroundSize: "0% 100%",
+          })
+          .set(".hero-text", {
+            backgroundColor: "transparent",
           });
 
         // Add the individual timeline to the master timeline
@@ -89,14 +117,22 @@ const Hero = () => {
         }}
       >
         Hello! I&#8217;m
+        <br />
         <span
           className="hero-text"
           style={{
-            display: "block",
+            // display: "block",
+            // mixBlendMode: "difference",
+            backgroundImage: "linear-gradient(to right, #495f8c, #495f8c )",
+            backgroundBlendMode: "color-burn",
+            backgroundSize: "0% 100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "right center",
           }}
         >
           {/* Sudhesh Venkatachalam */}
         </span>
+        <span className="cursor">|</span>
       </span>
     </div>
   );

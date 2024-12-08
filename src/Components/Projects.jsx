@@ -27,74 +27,95 @@ const Projects = () => {
     if (currentProject === null) {
       gsap.to(".proj3", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".insights", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".stained-glass", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".typography", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
     }
     if (currentProject === "proj3") {
       gsap.to(".proj3", {
         opacity: 1,
+        fontStyle: "italic",
       });
       gsap.to(".insights", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".stained-glass", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".typography", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
     }
     if (currentProject === "insights") {
       gsap.to(".proj3", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".insights", {
         opacity: 1,
+        fontStyle: "italic",
       });
       gsap.to(".stained-glass", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".typography", {
+        fontStyle: "normal",
         opacity: 0.6,
       });
     }
     if (currentProject === "stained-glass") {
       gsap.to(".proj3", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".insights", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".stained-glass", {
         opacity: 1,
+        fontStyle: "italic",
       });
       gsap.to(".typography", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
     }
     if (currentProject === "typography") {
       gsap.to(".proj3", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".insights", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".stained-glass", {
         opacity: 0.6,
+        fontStyle: "normal",
       });
       gsap.to(".typography", {
         opacity: 1,
+        fontStyle: "italic",
       });
     }
   }, [currentProject]);
+
   return (
     <div
       className="projects"
@@ -115,41 +136,82 @@ const Projects = () => {
       >
         <div
           className="project proj3"
+          id="proj3"
           style={{
             fontSize: (64 * window.innerWidth) / 1920,
             cursor: "pointer",
           }}
-          onClick={() => setCurrentProject("proj3")}
+          onClick={() => {
+            gsap.to(window, {
+              duration: 0.1,
+              scrollTo: {
+                y: "#proj3",
+                offsetY: (343.7 * window.innerHeight) / 1080,
+              },
+            });
+            setCurrentProject("proj3");
+          }}
         >
           proj_3
         </div>
         <div
+          id="insights"
           className="project insights"
           style={{
             fontSize: (64 * window.innerWidth) / 1920,
             cursor: "pointer",
           }}
-          onClick={() => setCurrentProject("insights")}
+          onClick={() => {
+            gsap.to(window, {
+              duration: 0.1,
+              scrollTo: {
+                y: "#insights",
+                offsetY: (343.7 * window.innerHeight) / 1080,
+              },
+            });
+            setCurrentProject("insights");
+          }}
         >
           insights
         </div>
         <div
+          id="stained-glass"
           className="project stained-glass"
           style={{
             fontSize: (64 * window.innerWidth) / 1920,
             cursor: "pointer",
           }}
-          onClick={() => setCurrentProject("stained-glass")}
+          onClick={() => {
+            gsap.to(window, {
+              duration: 0.1,
+              scrollTo: {
+                y: "#stained-glass",
+                offsetY: (343.7 * window.innerHeight) / 1080,
+              },
+            });
+
+            setCurrentProject("stained-glass");
+          }}
         >
           Stained Glass
         </div>
         <div
+          id="typography"
           className="project typography"
           style={{
             fontSize: (64 * window.innerWidth) / 1920,
             cursor: "pointer",
           }}
-          onClick={() => setCurrentProject("typography")}
+          onClick={() => {
+            gsap.to(window, {
+              duration: 0.1,
+              scrollTo: {
+                y: "#typography",
+                offsetY: (343.7 * window.innerHeight) / 1080,
+              },
+            });
+            setCurrentProject("typography");
+          }}
         >
           Typography for Story Telling
         </div>

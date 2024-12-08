@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../contexts";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./Contact.css";
 const Contact = () => {
   const { setCurrentView, secondMargin, thirdMargin } = useContext(Context);
+  const [disclaimer, setDisclaimer] = useState(false);
   useGSAP(() => {
     gsap.to(".contact", {
       scrollTrigger: {
@@ -21,6 +22,11 @@ const Contact = () => {
       },
     });
   });
+  useEffect(() => {
+    gsap.set(".disclaimer-text", {
+      y: 200,
+    });
+  }, []);
   return (
     <>
       <div
@@ -29,6 +35,7 @@ const Contact = () => {
         style={{
           height: "100vh",
           width: "100%",
+          overflow: "hidden",
           position: "relative",
         }}
       >
@@ -125,6 +132,33 @@ const Contact = () => {
           </span>
         </div>
         <div
+          className="disclaimer"
+          style={{
+            position: "absolute",
+            bottom: (90.75 * window.innerHeight) / 1080,
+            paddingRight: (350 * window.innerWidth) / 1920,
+            // backgroundColor: "#ebefff",
+            maskImage:
+              "linear-gradient(0deg, rgba(0,176,218,0) 0%, rgba(0,212,255,0.5032387955182073) 2%, rgba(2,0,36,1) 5%, rgba(2,0,36,1) 95%, rgba(2,0,36,0.500437675070028) 97%, rgba(2,0,36,0) 100%)",
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+          }}
+        >
+          <p
+            className="disclaimer-text"
+            style={{
+              fontSize: (21 * window.innerWidth) / 1920,
+              color: "#ff0000",
+              backgroundImage: "linear-gradient(to right, #ebefff, #ebefff)",
+              margin: 0,
+            }}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa,
+            optio rerum suscipit pariatur dolores fugiat accusamus vel ducimus
+            quaerat nesciunt ab expedita illum quam velit odio corrupti! Dolore,
+            quae minima.
+          </p>
+        </div>
+        <div
           className="footer-text"
           style={{
             position: "absolute",
@@ -133,6 +167,37 @@ const Contact = () => {
             fontSize: (21 * window.innerWidth) / 1920,
             color: "#495f8c",
             bottom: (37.9 * window.innerHeight) / 1080,
+          }}
+          onClick={() => {
+            if (!disclaimer) {
+              gsap.fromTo(
+                ".disclaimer-text",
+                {
+                  y: 200,
+                },
+                {
+                  y: 0,
+                  duration: 0.5,
+                  // ease: "bounce.in",
+                }
+              );
+            } else {
+              gsap.fromTo(
+                ".disclaimer-text",
+                {
+                  y: 0,
+                },
+                {
+                  y: 200,
+                  duration: 0.5,
+                  // ease: "bounce.in",
+                }
+              );
+            }
+            setDisclaimer(!disclaimer);
+            //   opacity: 0,
+            //   duration: 0.5,
+            // });
           }}
         >
           © 2024 Sudhesh Venkatachalam.
