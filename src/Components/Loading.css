@@ -1,0 +1,19 @@
+.loading-container p {
+  font-size: 72px;
+  font-weight: 500;
+  color: white;
+  /* color: black; */
+  margin: 0;
+  /* transform: translateY(25%); */
+  /* width: 25%; */
+  font-family: neue-haas-grotesk-text;
+  /* width: 25%; */
+  white-space: pre;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+
+  padding: 175px;
+}

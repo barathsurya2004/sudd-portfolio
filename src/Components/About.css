@@ -1,0 +1,8 @@
+.about span {
+  display: block;
+  font-family: "neue-haas-grotesk-text", sans-serif;
+  /* margin: -1px; */
+  font-weight: 700;
+  color: #495f8c;
+  line-height: 108px;
+}

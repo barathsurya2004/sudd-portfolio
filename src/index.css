@@ -1,0 +1,26 @@
+@font-face {
+  font-family: neue-haas;
+  src: url("./assets/fonts/NeueHaasUnica-Regular.ttf") format("truetype");
+}
+
+:root {
+  font-family: neue-haas-unica, Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+
+  background-color: #ebefff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  min-width: 320px;
+  min-height: 100vh;
+}
+* {
+  box-sizing: border-box;
+}
