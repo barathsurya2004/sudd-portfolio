@@ -1,6 +1,6 @@
 import axios from "axios"
 // const url = "http://sudd-backend.vercel.app/api/";
-export const url = "http://sudd-backend.vercel.app/api/";
+export const url = "https://sudd-backend-kcjuqxbg5-barath-suryas-projects.vercel.app/api/";
 export const googleUrl = "https://lh3.googleusercontent.com/d/"
 const id  = "675691b11ba213b1cf3577df";
 export const about = [
