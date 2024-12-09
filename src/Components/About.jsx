@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/all";
 import { useContext } from "react";
 import { Context } from "../contexts";
 gsap.registerPlugin(ScrollTrigger);
+import { about } from "../content";
 
 const About = () => {
   const { setCurrentView, secondMargin, thirdMargin, ratio } =
@@ -84,11 +85,7 @@ const About = () => {
                 // marginBottom: (90.2 * window.innerHeight) / 1080,
               }}
             >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              vel nihil unde repellendus blanditiis ut accusantium enim, autem
-              quod fuga sunt temporibus saepe, itaque, architecto culpa quis
-              voluptates? Repellat, optio? Lorem ipsum dolor sit amet
-              consectetur adipisicing elit.
+              {about[0]}
             </div>
             <div
               className="about-text"
@@ -96,11 +93,7 @@ const About = () => {
                 color: "#495f8c",
               }}
             >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe
-              doloremque perspiciatis commodi, dignissimos ipsum officia
-              necessitatibus quisquam aut eaque voluptatem maxime inventore
-              temporibus quaerat, nemo ut voluptate molestiae pariatur!
-              Vitae?Lorem ipsum dolor
+              {about[1]}
             </div>
           </div>
         </div>
@@ -148,11 +141,7 @@ const About = () => {
             marginBottom: (90.2 * window.innerHeight) / 1080,
           }}
         >
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti vel
-          nihil unde repellendus blanditiis ut accusantium enim, autem quod fuga
-          sunt temporibus saepe, itaque, architecto culpa quis voluptates?
-          Repellat, optio? Lorem ipsum dolor sit amet consectetur adipisicing
-          elit.
+          {about[0]}
         </div>
         <div
           className="about-text"
@@ -160,11 +149,7 @@ const About = () => {
             color: "#495f8c",
           }}
         >
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe
-          doloremque perspiciatis commodi, dignissimos ipsum officia
-          necessitatibus quisquam aut eaque voluptatem maxime inventore
-          temporibus quaerat, nemo ut voluptate molestiae pariatur! Vitae?Lorem
-          ipsum dolor
+          {about[1]}
         </div>
       </div>
     </div>

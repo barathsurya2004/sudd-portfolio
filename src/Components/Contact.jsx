@@ -4,9 +4,12 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./Contact.css";
 import icon1 from "../assets/icons/Colour icon.svg";
+import axios from "axios";
+import { googleUrl, url } from "../content";
 const Contact = () => {
   const { setCurrentView, secondMargin, thirdMargin } = useContext(Context);
   const [disclaimer, setDisclaimer] = useState(false);
+  const [selfPortrait, setSelfPortrait] = useState("");
   useGSAP(() => {
     gsap.to(".contact", {
       scrollTrigger: {
@@ -24,11 +27,25 @@ const Contact = () => {
     });
   });
   useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(url + "get-all-images");
+        console.log(response.data);
+        const temp = googleUrl + response.data.imageid;
+        setSelfPortrait(temp);
+        console.log(temp);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchImages();
+  }, []);
+  useEffect(() => {
     gsap.set(".disclaimer-text", {
       y: 200,
     });
   }, []);
-
   if (window.innerWidth <= 1000) {
     return (
       <div
@@ -39,7 +56,7 @@ const Contact = () => {
         }}
       >
         <div className="photo-container">
-          <img src={"https://picsum.photos/300/400"} alt="" />
+          <img src={selfPortrait} alt="" />
         </div>
         <div className="contact-container">
           <div className="contact-text">Drop a Hello! </div>
@@ -147,14 +164,19 @@ const Contact = () => {
             width: (424 * window.innerHeight) / 1080,
           }}
         >
-          <img
-            src="https://picsum.photos/300/400"
-            alt=""
-            style={{
-              height: "100%",
-              width: "100%",
-            }}
-          />
+          {selfPortrait ? (
+            <img
+              src={selfPortrait}
+              loading="lazy"
+              alt=""
+              style={{
+                height: "100%",
+                width: "100%",
+              }}
+            />
+          ) : (
+            <div>loading..</div>
+          )}
         </div>
         <div
           className="contact-container"
