@@ -1,6 +1,6 @@
 .navbar {
   position: fixed;
-
+  top: var(--top-margin);
   /* left: 83px; */
   /* transform: translate(0, -50%); */
 }

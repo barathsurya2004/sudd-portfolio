@@ -138,11 +138,15 @@ const Projects = () => {
                   setCurrentProject(null);
                   gsap.to("#proj3-iframe", {
                     height: 0,
+                    marginTop: 0,
+                    marginBottom: 0,
                   });
                   return;
                 } else {
                   gsap.to("#proj3-iframe", {
                     height: "100%",
+                    marginTop: 32,
+                    marginBottom: 32,
                   });
                 }
                 setCurrentProject("proj3");

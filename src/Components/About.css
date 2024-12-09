@@ -8,9 +8,27 @@
 }
 .about {
   left: var(--second-margin);
+  top: var(--top-margin);
 }
+.about-text {
+  font-size: 28px;
+}
+.about span {
+  font-size: 86px;
+}
+/* .about span {
+  font-size: 48px;
+} */
 .about-text-container {
   padding-left: var(--third-margin);
+  padding-right: calc(245 * 100vw / 1920);
+  font-size: 16px;
+}
+
+@media screen and (max-width: 1300px) {
+  .about span {
+    font-size: 72px;
+  }
 }
 
 @media screen and (max-width: 800px) {

@@ -14,6 +14,22 @@
 .loading-container {
   display: flex;
   align-items: center;
-
+  z-index: 100;
   padding: 175px;
+}
+
+@media screen and (max-width: 1400px) {
+  .loading-container {
+    padding: 0;
+    padding-left: var(--second-margin);
+    /* height: 80%; */
+  }
+  .loading-text-container {
+    flex-direction: column;
+    padding-top: calc(135 * 100vh / 748);
+    padding-bottom: calc(180 * 100vh / 748);
+  }
+  .loading-container p {
+    font-size: 40px;
+  }
 }

@@ -1,19 +1,23 @@
 .photo-container {
   left: var(--second-margin);
+  top: var(--top-margin);
 }
 .contact-container {
   left: var(--third-margin);
+  top: var(--top-margin);
 }
 .footer-container {
   left: var(--second-margin);
+  bottom: var(--bottom-margin);
 }
 .footer-text {
   left: var(--third-margin);
+  bottom: var(--bottom-margin);
 }
 .bassedoff {
   position: absolute;
   left: var(--third-margin);
-  bottom: calc(90.75 * 100vh / 1080);
+  bottom: calc(116 * 100vh / 1080);
 }
 .bassedoff span {
   font-size: calc(28 * 100vw / 1920);
@@ -22,13 +26,24 @@
 .disclaimer {
   left: var(--third-margin);
 }
-
-@media screen and (max-width: 800px) {
+.contact-text {
+  width: 100%;
+  font-size: 89px;
+  font-weight: 700;
+  line-height: 108px;
+  margin-bottom: calc(46.5 * 100vh / 1080);
+}
+.icon-1 {
+  left: var(--first-margin);
+  bottom: var(--bottom-margin);
+  height: 39px;
+}
+@media screen and (max-width: 1000px) {
   .contact {
     height: 100vh;
     width: 100%;
-    padding-left: var(--first-margin);
-    padding-top: var(--first-margin);
+    /* padding-left: var(--first-margin);
+    padding-top: var(--first-margin); */
     overflow: hidden;
     position: relative;
   }
@@ -55,7 +70,8 @@
   .footer-text {
     position: absolute;
     font-size: 9px;
-    left: var(--third-margin);
+    left: auto;
+    right: var(--first-margin);
     bottom: calc(32 * 100vh / 800);
     color: #495f8c;
   }
@@ -73,8 +89,8 @@
   }
   .contact-text {
     font-family: neue-haas-grotesk-text, sans-serif;
-    font-weight: 500;
-    font-size: 48px;
+    font-weight: 700;
+    font-size: 64px;
     color: #495f8c;
   }
   .footer-container {
@@ -87,7 +103,9 @@
   }
   .disclaimer {
     position: absolute;
-    left: var(--third-margin);
-    bottom: calc(50 * 100vh / 800);
+    bottom: calc(55 * 100vh / 800);
+    width: 35%;
+    left: calc(var(--second-margin) + 260px);
+    text-align: justify;
   }
 }

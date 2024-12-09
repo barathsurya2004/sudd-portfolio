@@ -12,9 +12,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --first-margin: 83.3px;
-  --second-margin: 500px;
-  --third-margin: 1107.4px;
+  --first-margin: calc(83.3 * 100vw / 1920);
+  --second-margin: calc(500 * 100vw / 1920);
+  --third-margin: calc(1107.4 * 100vw / 1920);
+  --top-margin: 250px;
+  --bottom-margin: calc(62 * 100vh / 1080);
 }
 
 body {
@@ -33,6 +35,13 @@ body {
   :root {
     --first-margin: calc(83.3 * 100vw / 1920);
     --second-margin: calc(calc(500 * 100vw / 1920) - var(--first-margin));
-    --third-margin: calc(calc(1107.4 * 100vw / 1920) - var(--first-margin));
+    --third-margin: calc(800 * 100vw / 1400);
+  }
+}
+@media screen and (max-width: 800px) {
+  :root {
+    --first-margin: 32px;
+    --second-margin: 64px;
+    --third-margin: 96px;
   }
 }

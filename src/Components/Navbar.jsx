@@ -90,7 +90,6 @@ const Navbar = () => {
       className="navbar"
       style={{
         //top should be 323.3px
-        top: (343.7 * window.innerHeight) / 1080,
         left: firstMargin,
         zIndex: 11,
         // paddingTop: (59 * window.innerHeight) / 1080,

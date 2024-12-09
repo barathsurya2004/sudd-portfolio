@@ -13,7 +13,6 @@ const Hero = () => {
     "Sudhesh Venkatachalam",
     "a Graphic Designer",
     "a Motion Designer",
-    "a Runner",
     "a Visual Designer",
     "a Type Designer",
     "a Typographer",
@@ -102,21 +101,28 @@ const Hero = () => {
         fontWeight: 900,
         height: "100vh",
         width: "100%",
+        // display: "flex",
+        // justifyContent: "center",
+        // paddingTop: (328 * window.innerHeight) / 1080,
         display: "flex",
         // justifyContent: "center",
-        paddingTop: (328 * window.innerHeight) / 1080,
+        // alignItems: "center",
+        position: "relative",
       }}
     >
       <span
+        className="hero-text-container"
         style={{
-          width: "55%",
           color: "#495f8c",
           fontFamily: "neue-haas-grotesk-text",
           fontWeight: 700,
+          position: "absolute",
+          // bottom: "50%",
+          // top: "50%",
+          // transform: "translateY(-50%)",
         }}
       >
-        Hello! I&#8217;m
-        <br />
+        Hello! <span className="iam">I am </span>
         <span
           className="hero-text"
           style={{

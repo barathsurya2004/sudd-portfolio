@@ -124,51 +124,26 @@ const About = () => {
             position: "absolute",
             // paddingLeft: (500 * window.innerWidth) / 1920,
             // transform: "translateY(-25%)",
-            top: (323.3 * window.innerHeight) / 1080,
           }}
         >
-          <span
-            style={{
-              fontSize: (89 * window.innerWidth) / 1920,
-            }}
-          >
-            Human
-          </span>
-          <span
-            style={{
-              fontSize: (89 * window.innerWidth) / 1920,
-            }}
-          >
-            Purpose
-          </span>
-          <span
-            style={{
-              fontSize: (89 * window.innerWidth) / 1920,
-            }}
-          >
-            Resonate
-          </span>
-          <span
-            style={{
-              fontSize: (89 * window.innerWidth) / 1920,
-            }}
-          >
-            Magic
-          </span>
+          <span style={{}}>Human</span>
+          <span style={{}}>Purpose</span>
+          <span style={{}}>Resonate</span>
+          <span style={{}}>Magic</span>
         </div>
       </div>
       <div
         className="about-text-container"
-        style={{
-          paddingRight: (235.75 * window.innerWidth) / 1920,
-          // fontSize: (28 * window.innerWidth) / 1920,
-          // color: "#495f8c",
-        }}
+        style={
+          {
+            // fontSize: (28 * window.innerWidth) / 1920,
+            // color: "#495f8c",
+          }
+        }
       >
         <div
           className="about-text"
           style={{
-            fontSize: (28 * window.innerWidth) / 1920,
             color: "#495f8c",
             marginBottom: (90.2 * window.innerHeight) / 1080,
           }}
@@ -182,7 +157,6 @@ const About = () => {
         <div
           className="about-text"
           style={{
-            fontSize: (28 * window.innerWidth) / 1920,
             color: "#495f8c",
           }}
         >

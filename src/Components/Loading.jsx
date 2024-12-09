@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Loading.css";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -10,11 +10,24 @@ const Loading = () => {
   const [loaded, setLoaded] = useState({ value: 0 });
   const [position, setPosition] = useState({ value: 0 });
   const { loading, setLoading } = useContext(Context);
+  const [textelem, setTextelem] = useState({ clientHeight: 0 });
   useEffect(() => {
-    gsap.set(".loading-text", {
-      x: (-1500 * window.innerWidth) / 1920,
-      opacity: 0,
-    });
+    const temp = document.querySelector(".loading-text");
+    setTextelem({ clientHeight: temp.clientHeight });
+    console.log(temp.clientHeight);
+  }, []);
+  useEffect(() => {
+    if (window.innerWidth < 1400) {
+      gsap.set(".loading-text", {
+        y: (0 * window.innerHeight) / 1080,
+        opacity: 0,
+      });
+      gsap.set(".loading-text", {
+        x: (-1500 * window.innerWidth) / 1920,
+        opacity: 0,
+      });
+    } else {
+    }
   }, []);
   useGSAP(() => {
     gsap.fromTo(
@@ -61,6 +74,71 @@ const Loading = () => {
       },
     });
   });
+  if (window.innerWidth < 1400) {
+    return (
+      <div
+        className="loading-container"
+        style={{
+          height: "100vh",
+          width: "100%",
+          // fontFamily: "neue-haas",
+          position: "fixed",
+        }}
+      >
+        <div
+          className="loading-background"
+          style={{
+            height: "100%",
+            width: "100%",
+            background: "#495f8c",
+            position: "absolute",
+            zIndex: 0,
+            top: 0,
+            left: 0,
+          }}
+        />
+        <div
+          className="loading-text-container"
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <p
+            className="loading-name-text"
+            style={{
+              background: "#495f8c",
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            Sudhesh
+            <br />
+            Venkatachalam
+          </p>
+          <p
+            className="loading-text"
+            style={{
+              position: "relative",
+              transform: `translateY(${
+                ((loaded.value - 100) * 5 * window.innerHeight) / 1080
+              }px)`,
+              zIndex: 0,
+              fontFamily: "neue-haas-unica",
+              fontWeight: 3 * loaded.value + 300,
+              opacity: 0,
+            }}
+          >
+            {loaded.value}
+          </p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div
       className="loading-container"
@@ -115,6 +193,7 @@ const Loading = () => {
             zIndex: 0,
             fontFamily: "neue-haas-unica",
             fontWeight: 3 * loaded.value + 300,
+            opacity: 0,
           }}
         >
           {loaded.value}
