@@ -1,5 +1,6 @@
 .hero {
   padding-left: var(--second-margin);
+  font-size: calc(100 * 100vw / 1920);
 }
 .hero-text {
   /* filter: invert(1); */
@@ -7,6 +8,7 @@
 
 @media screen and (max-width: 768px) {
   .hero {
-    padding-left: var(--third-margin);
+    padding-left: var(--first-margin);
+    font-size: 44px;
   }
 }

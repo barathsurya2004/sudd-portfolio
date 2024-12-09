@@ -12,9 +12,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --first-margin: calc(83.3 * 100vw / 1920);
-  --second-margin: calc(500 * 100vw / 1920);
-  --third-margin: calc(1107.4 * 100vw / 1920);
+  --first-margin: 83.3px;
+  --second-margin: 500px;
+  --third-margin: 1107.4px;
 }
 
 body {

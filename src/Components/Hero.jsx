@@ -99,7 +99,6 @@ const Hero = () => {
       className="hero"
       style={{
         fontFamily: "neue-haas-grotesk-display",
-        fontSize: (100 * window.innerWidth) / 1920,
         fontWeight: 900,
         height: "100vh",
         width: "100%",

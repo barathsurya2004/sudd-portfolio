@@ -115,6 +115,106 @@ const Projects = () => {
       });
     }
   }, [currentProject]);
+  if (window.innerWidth <= 800) {
+    return (
+      <div className="projects-container-all">
+        <div
+          className="projects-container"
+          id="projects"
+          style={{
+            width: "100%",
+            position: "relative",
+          }}
+        >
+          <div className="projects">
+            <div
+              className="project proj3"
+              id="proj3"
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                if (currentProject === "proj3") {
+                  setCurrentProject(null);
+                  gsap.to("#proj3-iframe", {
+                    height: 0,
+                  });
+                  return;
+                } else {
+                  gsap.to("#proj3-iframe", {
+                    height: "100%",
+                  });
+                }
+                setCurrentProject("proj3");
+              }}
+            >
+              <p>proj_3</p>
+              <div id="proj3-iframe" className="actual-project">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Architecto, assumenda qui magnam ad, eos totam ratione adipisci
+                expedita aperiam quo est, inventore corporis perspiciatis autem
+                voluptate accusamus nihil? Placeat, dignissimos!;Lorem ipsum
+                dolor sit amet consectetur adipisicing elit. Quibusdam, a eum
+                ullam, hic amet est inventore quidem harum voluptates laboriosam
+                error quam repellat corporis! Non porro inventore dolores
+                pariatur possimus!Lorem
+              </div>
+            </div>
+            <div
+              id="insights"
+              className="project insights"
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                if (currentProject === "insights") {
+                  setCurrentProject(null);
+                  return;
+                }
+
+                setCurrentProject("insights");
+              }}
+            >
+              insights
+            </div>
+            <div
+              id="stained-glass"
+              className="project stained-glass"
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                if (currentProject === "stained-glass") {
+                  setCurrentProject(null);
+                  return;
+                }
+                setCurrentProject("stained-glass");
+              }}
+            >
+              Stained Glass
+            </div>
+            <div
+              id="typography"
+              className="project typography"
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                if (currentProject === "typography") {
+                  setCurrentProject(null);
+                  return;
+                }
+                setCurrentProject("typography");
+              }}
+            >
+              Typography
+            </div>
+          </div>
+          <div className="project-click-info">select project to view</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

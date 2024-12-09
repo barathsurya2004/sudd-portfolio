@@ -27,6 +27,87 @@ const Contact = () => {
       y: 200,
     });
   }, []);
+
+  if (window.innerWidth <= 800) {
+    return (
+      <div className="contact">
+        <div className="photo-container">
+          <img src={"https://picsum.photos/300/400"} alt="" />
+        </div>
+        <div className="contact-container">
+          <div className="contact-text">Drop a Hello! </div>
+          <div className="footer-container">
+            <span>Linkedin</span>
+            <span>sudheshhimself@gmail.com</span>
+          </div>
+        </div>
+
+        <div className="bassedoff">
+          <p>
+            Based of <span>Hyderabad</span>
+          </p>
+          <p>
+            Originally from <span>Salem, India</span>
+          </p>
+        </div>
+        <div
+          className="disclaimer"
+          style={{
+            // backgroundColor: "#ebefff",
+            maskImage:
+              "linear-gradient(0deg, rgba(0,176,218,0) 0%, rgba(0,212,255,0.5032387955182073) 2%, rgba(2,0,36,1) 5%, rgba(2,0,36,1) 95%, rgba(2,0,36,0.500437675070028) 97%, rgba(2,0,36,0) 100%)",
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+          }}
+        >
+          <p
+            className="disclaimer-text"
+            style={{
+              fontSize: (21 * window.innerWidth) / 1920,
+              color: "#ff0000",
+              margin: 0,
+            }}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa,
+            optio rerum suscipit pariatur dolores fugiat accusamus vel ducimus
+            quaerat nesciunt ab expedita illum quam velit odio corrupti! Dolore,
+            quae minima.
+          </p>
+        </div>
+        <div
+          className="footer-text"
+          onClick={() => {
+            if (!disclaimer) {
+              gsap.fromTo(
+                ".disclaimer-text",
+                {
+                  y: 200,
+                },
+                {
+                  y: 0,
+                  duration: 0.5,
+                }
+              );
+            } else {
+              gsap.fromTo(
+                ".disclaimer-text",
+                {
+                  y: 0,
+                },
+                {
+                  y: 200,
+                  duration: 0.5,
+                }
+              );
+            }
+            setDisclaimer(!disclaimer);
+          }}
+        >
+          © 2024 Sudhesh Venkatachalam.
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div

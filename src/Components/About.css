@@ -15,7 +15,13 @@
 
 @media screen and (max-width: 800px) {
   .about {
-    left: var(--second-margin);
+    padding-top: calc(67 * 100vh / 750);
+    margin-bottom: calc(67 * 100vh / 750);
+    padding-left: var(--first-margin);
+  }
+  .about span {
+    margin-bottom: calc(32 * 100vw / 800);
+    font-size: 72px;
   }
   .about-text-container {
     padding-left: var(--second-margin);
@@ -23,5 +29,7 @@
   .about-text {
     margin-bottom: calc(30 * 100vh / 1080);
     font-size: calc(80 * 100vw / 1920);
+  }
+  .about-container {
   }
 }
