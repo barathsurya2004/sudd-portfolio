@@ -7,16 +7,6 @@ export const about = [
     "I am a Full Stack Developer with a passion for creating beautiful and functional websites. I have experience in building web applications using React, Node.js, Express, and MongoDB. I am also familiar with Python, Java, and C++.",
     "I am a quick learner and a team player. I am always eager to learn new technologies and improve my skills. I am looking for opportunities to work on challenging projects and grow as a developer.",
 ]
-const texts = await axios.get(
-    url + "get-all-texts/" + id
-).then((response) => {
-    const temp = response.data.texts;
-    about[0] = temp.text1;
-    about[1] = temp.text2;
-    console.log(temp); 
-    return response.data;
-})
-
 
 
 export const projects = [

@@ -2,15 +2,26 @@ import { useGSAP } from "@gsap/react";
 import "./About.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../contexts";
+import { url } from "../content";
+import axios from "axios";
 gsap.registerPlugin(ScrollTrigger);
-import { about } from "../content";
+// import { about } from "../content";
 
 const About = () => {
   const { setCurrentView, secondMargin, thirdMargin, ratio } =
     useContext(Context);
-
+  const [about, setAbout] = useState(["", ""]);
+  useEffect(() => {
+    const afunc = async () => {
+      const response = await axios.get(
+        url + "get-all-texts/" + "675691b11ba213b1cf3577df"
+      );
+      setAbout([response.data.texts.text1, response.data.texts.text2]);
+    };
+    afunc();
+  }, []);
   useGSAP(() => {
     gsap.to(".about", {
       scrollTrigger: {
