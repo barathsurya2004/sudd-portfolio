@@ -9,24 +9,48 @@ gsap.registerPlugin(Flip);
 const Loading = () => {
   const [loaded, setLoaded] = useState({ value: 0 });
   const [position, setPosition] = useState({ value: 0 });
-  const { loading, setLoading } = useContext(Context);
+  const { loading, setLoading, currentColor } = useContext(Context);
   const [textelem, setTextelem] = useState({ clientHeight: 0 });
+  const disableScroll = () => {
+    document.body.style.overflow = "hidden";
+  };
+  const enableScroll = () => {
+    document.body.style.overflow = "auto";
+  };
   useEffect(() => {
     const temp = document.querySelector(".loading-text");
     setTextelem({ clientHeight: temp.clientHeight });
     console.log(temp.clientHeight);
+    disableScroll();
   }, []);
   useEffect(() => {
     if (window.innerWidth < 1400) {
+      const text = document.querySelector(".loading-name-container");
+      const loadingText = document.querySelector(".loading-number-container");
+      const diff =
+        loadingText.getBoundingClientRect().top -
+        text.getBoundingClientRect().top;
+      console.log(
+        loadingText.getBoundingClientRect().top,
+        text.getBoundingClientRect().top,
+        diff
+      );
       gsap.set(".loading-text", {
-        y: (0 * window.innerHeight) / 1080,
-        opacity: 0,
-      });
-      gsap.set(".loading-text", {
-        x: (-1500 * window.innerWidth) / 1920,
+        y: -diff,
         opacity: 0,
       });
     } else {
+      const text = document.querySelector(".loading-name-container");
+      const loadingText = document.querySelector(".loading-number-container");
+      if (!loadingText || !text) return;
+      const diff =
+        loadingText.getBoundingClientRect().left -
+        text.getBoundingClientRect().left;
+
+      gsap.set(".loading-text", {
+        x: -diff,
+        opacity: 0,
+      });
     }
   }, []);
   useGSAP(() => {
@@ -41,7 +65,7 @@ const Loading = () => {
         },
       }
     );
-    gsap.fromTo(".loading-name-text", { y: 100 }, { y: 0, duration: 0.7 });
+    gsap.fromTo(".loading-name-text", { y: 100 }, { y: 0, duration: 0.5 });
 
     gsap.to(loaded, {
       value: 100,
@@ -49,28 +73,66 @@ const Loading = () => {
       roundProps: "value",
       duration: 6,
       ease: "power2.out",
+      onStart: () => {
+        if (window.innerWidth < 1400) {
+          gsap.to(".loading-text", {
+            y: 0,
+            duration: 6,
+            ease: "power2.out",
+          });
+        } else {
+          gsap.to(".loading-text", {
+            x: 0,
+            duration: 4.5,
+            ease: "power2.out",
+          });
+        }
+      },
       onUpdate: () => {
         setLoaded({ value: loaded.value });
         if (loaded.value < 100) {
           setPosition({ value: loaded.value });
         }
-        console.log(loaded.value);
+
+        // console.log(loaded.value);
       },
       onComplete: () => {
         gsap.set(".loading-name-text", { background: null });
         gsap.to(".loading-text-container", {
-          duration: 1,
+          duration: 0.5,
           y: -100,
           opacity: 0,
         });
         gsap.to(".loading-background", {
           duration: 1,
-          opacity: 0,
           onComplete: () => {
             gsap.set(".loading-container", { display: "none" });
+            enableScroll();
           },
         });
         setLoading(false);
+        gsap.fromTo(
+          ".hero",
+          {
+            y: "100vh",
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+          }
+        );
+        gsap.fromTo(
+          ".navbar",
+          {
+            y: "100vh",
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+          }
+        );
       },
     });
   });
@@ -90,7 +152,7 @@ const Loading = () => {
           style={{
             height: "100%",
             width: "100%",
-            background: "#495f8c",
+            background: currentColor.sec,
             position: "absolute",
             zIndex: 0,
             top: 0,
@@ -108,33 +170,37 @@ const Loading = () => {
             justifyContent: "space-between",
           }}
         >
-          <p
-            className="loading-name-text"
-            style={{
-              background: "#495f8c",
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
-            Sudhesh
-            <br />
-            Venkatachalam
-          </p>
-          <p
-            className="loading-text"
-            style={{
-              position: "relative",
-              transform: `translateY(${
-                ((loaded.value - 100) * 5 * window.innerHeight) / 1080
-              }px)`,
-              zIndex: 0,
-              fontFamily: "neue-haas-unica",
-              fontWeight: 3 * loaded.value + 300,
-              opacity: 0,
-            }}
-          >
-            {loaded.value}
-          </p>
+          <div className="loading-name-container">
+            <p
+              className="loading-name-text"
+              style={{
+                background: currentColor.sec,
+                position: "relative",
+                zIndex: 1,
+                color: currentColor.prim,
+              }}
+            >
+              Sudhesh
+              <br />
+              Venkatachalam
+            </p>
+          </div>
+          <div className="loading-number-container">
+            <p
+              className="loading-text"
+              style={{
+                position: "relative",
+
+                zIndex: 0,
+                fontFamily: "neue-haas-unica",
+                fontWeight: 3 * loaded.value + 500,
+                opacity: 0,
+                color: currentColor.prim,
+              }}
+            >
+              {loaded.value}
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -154,7 +220,7 @@ const Loading = () => {
         style={{
           height: "100%",
           width: "100%",
-          background: "#495f8c",
+          // background: currentColor.sec,
           position: "absolute",
           zIndex: 0,
           top: 0,
@@ -171,33 +237,37 @@ const Loading = () => {
           transform: "translateY(25%)",
         }}
       >
-        <p
-          className="loading-name-text"
-          style={{
-            background: "#495f8c",
-            position: "relative",
-            zIndex: 1,
-          }}
-        >
-          Sudhesh
-          <br />
-          Venkatachalam
-        </p>
-        <p
-          className="loading-text"
-          style={{
-            position: "relative",
-            transform: `translateX(${
-              ((position.value - 100) * 15 * window.innerWidth) / 1920
-            }px)`,
-            zIndex: 0,
-            fontFamily: "neue-haas-unica",
-            fontWeight: 3 * loaded.value + 300,
-            opacity: 0,
-          }}
-        >
-          {loaded.value}
-        </p>
+        <div className="loading-name-container">
+          <p
+            className="loading-name-text"
+            style={{
+              background: currentColor.sec,
+              position: "relative",
+              zIndex: 1,
+              color: currentColor.prim,
+            }}
+          >
+            Sudhesh
+            <br />
+            Venkatachalam
+          </p>
+        </div>
+        <div className="loading-number-container">
+          <p
+            className="loading-text"
+            style={{
+              position: "relative",
+
+              zIndex: 0,
+              fontFamily: "neue-haas-unica",
+              fontWeight: 3 * loaded.value + 300,
+              opacity: 0,
+              color: currentColor.prim,
+            }}
+          >
+            {loaded.value}
+          </p>
+        </div>
       </div>
     </div>
   );

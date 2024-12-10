@@ -7,6 +7,9 @@ export const Context = createContext({
   setCurrentProject: () => {},
   loading: false,
   setLoading: () => {},
+  currentColor: null,
+  setCurrentColor: () => {},
+  ratio: 0,
 });
 
 export const ContextProvider = ({ children }) => {
@@ -23,6 +26,30 @@ export const ContextProvider = ({ children }) => {
   const [thirdMargin, setThirdMargin] = useState(
     (1107.4 * window.innerWidth) / 1920
   );
+  const [currentColor, setcurcol] = useState({
+    prim: "#3c4e73",
+    sec: "#f5f7ff",
+  });
+  const [colorIndex, setColorIndex] = useState(0);
+  const colors = [
+    {
+      prim: "#3c4e73",
+      sec: "#f5f7ff",
+    },
+    {
+      prim: "#f5f5f5",
+      sec: "#141414",
+    },
+    {
+      prim: "#141414",
+      sec: "#f5f5f5",
+    },
+  ];
+  const setCurrentColor = () => {
+    console.log("colorIndex", colorIndex);
+    setColorIndex((colorIndex + 1) % colors.length);
+    setcurcol(colors[colorIndex]);
+  };
   useEffect(() => {
     const resize = () => {
       setRatio(window.innerHeight / window.innerWidth);
@@ -45,6 +72,8 @@ export const ContextProvider = ({ children }) => {
     firstMargin,
     secondMargin,
     thirdMargin,
+    currentColor,
+    setCurrentColor,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

@@ -9,15 +9,23 @@ import Contact from "./Components/Contact";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "./contexts";
 gsap.registerPlugin(ScrollTrigger);
 const App = () => {
-  const { setCurrentView, currentView, ratio } = useContext(Context);
+  const { currentColor, setCurrentView, currentView, ratio } =
+    useContext(Context);
 
-  useGSAP(() => {});
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
-    <>
+    <div
+      className="App"
+      style={{
+        backgroundColor: currentColor.sec,
+      }}
+    >
       {window.innerWidth > 1400 && <Navbar />}
       <Loading />
       <Hero />
@@ -25,7 +33,7 @@ const App = () => {
       <Projects />
       <Contact />
       {/* hi */}
-    </>
+    </div>
   );
 };
 

@@ -8,16 +8,19 @@ import { TextPlugin } from "gsap/all";
 import "./Hero.css";
 gsap.registerPlugin(TextPlugin);
 const Hero = () => {
-  const { setCurrentView, loading, secondMargin } = useContext(Context);
+  const { currentColor, setCurrentView, loading, secondMargin } =
+    useContext(Context);
   const texts = [
-    "Sudhesh Venkatachalam",
-    "a Graphic Designer",
-    "a Motion Designer",
-    "a Visual Designer",
-    "a Type Designer",
-    "a Typographer",
-    "a Movie Buff",
+    "Sudhesh Venkatachalam.",
+    "a Graphic Designer.",
+    "a Motion Designer.",
+    "a Visual Designer.",
+    "a Type Designer.",
+    "a Synergy Designer.",
   ];
+  useEffect(() => {
+    gsap.set(".hero", { y: "100vh" });
+  }, []);
   useGSAP(() => {
     const tl = gsap.timeline();
     tl.to(".cursor", {
@@ -57,7 +60,7 @@ const Hero = () => {
           },
         })
           .to(".hero-text", {
-            duration: 1, // Time to pause for reading
+            duration: index == 0 ? 2.7 : 1, // Time to pause for reading
           })
           .set(".cursor", {
             text: {
@@ -96,6 +99,7 @@ const Hero = () => {
   return (
     <div
       className="hero"
+      id="hero"
       style={{
         fontFamily: "neue-haas-grotesk-display",
         fontWeight: 900,
@@ -113,7 +117,7 @@ const Hero = () => {
       <span
         className="hero-text-container"
         style={{
-          color: "#495f8c",
+          color: currentColor.prim,
           fontFamily: "neue-haas-grotesk-text",
           fontWeight: 700,
           position: "absolute",
@@ -128,7 +132,7 @@ const Hero = () => {
           style={{
             // display: "block",
             // mixBlendMode: "difference",
-            backgroundImage: "linear-gradient(to right, #495f8c, #495f8c )",
+            backgroundImage: `linear-gradient(to right, ${currentColor.prim}, ${currentColor.prim} )`,
             backgroundBlendMode: "color-burn",
             backgroundSize: "0% 100%",
             backgroundRepeat: "no-repeat",
@@ -137,7 +141,14 @@ const Hero = () => {
         >
           {/* Sudhesh Venkatachalam */}
         </span>
-        <span className="cursor">|</span>
+        <span
+          className="cursor"
+          style={{
+            fontWeight: 500,
+          }}
+        >
+          |
+        </span>
       </span>
     </div>
   );

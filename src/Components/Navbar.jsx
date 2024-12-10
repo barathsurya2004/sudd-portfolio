@@ -6,7 +6,13 @@ import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/all";
 gsap.registerPlugin(ScrollToPlugin);
 const Navbar = () => {
-  const { setCurrentView, currentView, firstMargin } = useContext(Context);
+  const { currentColor, setCurrentView, currentView, firstMargin } =
+    useContext(Context);
+  useEffect(() => {
+    gsap.set(".navbar", {
+      y: "100vh",
+    });
+  }, []);
   useEffect(() => {
     console.log(currentView);
     if (currentView === "Hero") {
@@ -30,7 +36,12 @@ const Navbar = () => {
       });
     }
     if (currentView === "About") {
-      gsap.to(".about-m", { fontStyle: "italic", fontWeight: 500, opacity: 1 });
+      gsap.to(".about-m", {
+        fontStyle: "italic",
+        fontWeight: 500,
+        opacity: 1,
+        duration: 0.02,
+      });
       gsap.to(".projects-m", {
         fontStyle: "normal",
         fontWeight: 400,
@@ -98,9 +109,51 @@ const Navbar = () => {
       <div
         className="logo"
         onClick={() => {
-          gsap.to(window, {
-            scrollTo: "#hero",
-          });
+          var now;
+          if (currentView === "Hero") {
+            now = ".hero";
+          }
+          if (currentView === "Projects") {
+            now = ".projects";
+          }
+          if (currentView === "About") {
+            now = ".about-container-all";
+          }
+          if (currentView === "Contact") {
+            now = ".contact";
+          }
+
+          const tl = gsap.timeline();
+          tl.fromTo(
+            now,
+            {
+              transform: "scale(1)",
+            },
+            {
+              transform: "scale(0.997)",
+              duration: 0.16,
+              ease: "power1.out",
+            }
+          )
+            .to(window, {
+              scrollTo: "#hero",
+              duration: 0.001,
+            })
+            .fromTo(
+              ".hero",
+              {
+                transform: "scale(0.997)",
+              },
+              {
+                transform: "scale(1)",
+                duration: 0.1,
+                ease: "power1.in",
+              }
+            )
+            .set(now, {
+              transform: "scale(1)",
+              opacity: 1,
+            });
           setCurrentView("Hero");
         }}
         style={{
@@ -108,6 +161,7 @@ const Navbar = () => {
           fontWeight: 900,
           marginBottom: 11.33,
           cursor: "pointer",
+          color: currentColor.prim,
         }}
       >
         S
@@ -117,7 +171,7 @@ const Navbar = () => {
         onClick={() => {
           var now;
           if (currentView === "Hero") {
-            now = ".hero";
+            now = ".hero-text";
           }
           if (currentView === "Projects") {
             now = ".projects";
@@ -169,6 +223,7 @@ const Navbar = () => {
           fontFamily: "neue-haas-grotesk-text",
           marginBottom: 11.8625,
           cursor: "pointer",
+          color: currentColor.prim,
         }}
       >
         about
@@ -178,7 +233,7 @@ const Navbar = () => {
         onClick={() => {
           var now;
           if (currentView === "Hero") {
-            now = ".hero";
+            now = ".hero-text";
           }
           if (currentView === "Projects") {
             now = ".projects";
@@ -230,6 +285,7 @@ const Navbar = () => {
           fontFamily: "neue-haas-grotesk-text",
           marginBottom: 11.7265,
           cursor: "pointer",
+          color: currentColor.prim,
         }}
       >
         projects
@@ -239,7 +295,7 @@ const Navbar = () => {
         onClick={() => {
           var now;
           if (currentView === "Hero") {
-            now = ".hero";
+            now = ".hero-text";
           }
           if (currentView === "Projects") {
             now = ".projects";
@@ -265,7 +321,7 @@ const Navbar = () => {
           )
 
             .to(window, {
-              scrollTo: "#contact",
+              scrollTo: ".contact",
               duration: 0.001,
             })
 
@@ -290,6 +346,7 @@ const Navbar = () => {
         style={{
           fontFamily: "neue-haas-grotesk-text",
           cursor: "pointer",
+          color: currentColor.prim,
         }}
       >
         contact

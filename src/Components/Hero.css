@@ -1,12 +1,14 @@
 .hero {
   /* padding-left: var(--second-margin); */
-  font-size: calc(100 * 100vw / 1920);
+  font-size: calc(134 * 100vw / 1920);
 }
+
 .hero-text-container {
   top: calc(var(--top-margin) - 17px);
   padding-left: var(--second-margin);
-  width: 55%;
+  width: 67%;
   overflow-wrap: normal;
+  /* line-height: 146px; */
   /* filter: invert(1); */
 }
 

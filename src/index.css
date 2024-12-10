@@ -7,7 +7,6 @@
   font-family: neue-haas-unica, Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;
 
-  background-color: #ebefff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -15,7 +14,7 @@
   --first-margin: calc(83.3 * 100vw / 1920);
   --second-margin: calc(500 * 100vw / 1920);
   --third-margin: calc(1107.4 * 100vw / 1920);
-  --top-margin: 250px;
+  --top-margin: calc(250 * 100vh / 1080);
   --bottom-margin: calc(62 * 100vh / 1080);
 }
 

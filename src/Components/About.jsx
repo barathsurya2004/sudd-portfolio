@@ -6,11 +6,12 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../contexts";
 import { url } from "../content";
 import axios from "axios";
+
 gsap.registerPlugin(ScrollTrigger);
 // import { about } from "../content";
 
 const About = () => {
-  const { setCurrentView, secondMargin, thirdMargin, ratio } =
+  const { currentColor, setCurrentView, secondMargin, thirdMargin, ratio } =
     useContext(Context);
   const [about, setAbout] = useState(["", ""]);
   useEffect(() => {
@@ -49,12 +50,14 @@ const About = () => {
             // height: "100vh",
             width: "100%",
             position: "relative",
+            color: currentColor.prim,
           }}
         >
           <div className="about">
             <span
               style={{
                 fontSize: (76 * window.innerWidth) / 750,
+                color: currentColor.prim,
               }}
             >
               Human
@@ -62,6 +65,7 @@ const About = () => {
             <span
               style={{
                 fontSize: (76 * window.innerWidth) / 750,
+                color: currentColor.prim,
               }}
             >
               Purpose
@@ -69,6 +73,7 @@ const About = () => {
             <span
               style={{
                 fontSize: (76 * window.innerWidth) / 750,
+                color: currentColor.prim,
               }}
             >
               Resonate
@@ -76,6 +81,7 @@ const About = () => {
             <span
               style={{
                 fontSize: (76 * window.innerWidth) / 750,
+                color: currentColor.prim,
               }}
             >
               Magic
@@ -92,7 +98,7 @@ const About = () => {
             <div
               className="about-text"
               style={{
-                color: "#495f8c",
+                color: currentColor.prim,
                 // marginBottom: (90.2 * window.innerHeight) / 1080,
               }}
             >
@@ -101,7 +107,7 @@ const About = () => {
             <div
               className="about-text"
               style={{
-                color: "#495f8c",
+                color: currentColor.prim,
               }}
             >
               {about[1]}
@@ -128,12 +134,19 @@ const About = () => {
             position: "absolute",
             // paddingLeft: (500 * window.innerWidth) / 1920,
             // transform: "translateY(-25%)",
+            color: currentColor.prim,
           }}
         >
-          <span style={{}}>Human</span>
-          <span style={{}}>Purpose</span>
-          <span style={{}}>Resonate</span>
-          <span style={{}}>Magic</span>
+          <span
+            style={{
+              color: currentColor.prim,
+            }}
+          >
+            Human
+          </span>
+          <span style={{ color: currentColor.prim }}>Purpose</span>
+          <span style={{ color: currentColor.prim }}>Resonate</span>
+          <span style={{ color: currentColor.prim }}>Magic</span>
         </div>
       </div>
       <div
@@ -148,7 +161,7 @@ const About = () => {
         <div
           className="about-text"
           style={{
-            color: "#495f8c",
+            color: currentColor.prim,
             marginBottom: (90.2 * window.innerHeight) / 1080,
           }}
         >
@@ -157,7 +170,7 @@ const About = () => {
         <div
           className="about-text"
           style={{
-            color: "#495f8c",
+            color: currentColor.prim,
           }}
         >
           {about[1]}

@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { projects } from "../content";
 const Projects = () => {
-  const { setCurrentView, setCurrentProject, currentProject } =
+  const { currentColor, setCurrentView, setCurrentProject, currentProject } =
     useContext(Context);
 
   useGSAP(() => {
@@ -49,9 +49,10 @@ const Projects = () => {
               return (
                 <div
                   className="project"
-                  id={project.title}
+                  id={project.id}
                   style={{
                     cursor: "pointer",
+                    color: currentColor.prim,
                   }}
                   onClick={() => {
                     if (currentProject === project.title) {
@@ -70,7 +71,6 @@ const Projects = () => {
               );
             })}
           </div>
-          <div className="project-click-info">select project to view</div>
         </div>
       </div>
     );
@@ -102,6 +102,7 @@ const Projects = () => {
               style={{
                 fontSize: (64 * window.innerWidth) / 1920,
                 cursor: "pointer",
+                color: currentColor.prim,
               }}
               onClick={() => {
                 gsap.to(window, {
@@ -131,26 +132,24 @@ const Projects = () => {
           paddingRight: (235.75 * window.innerWidth) / 1920,
           fontSize: (28 * window.innerWidth) / 1920,
           opacity: 0.6,
-          color: "#495f8c",
         }}
       >
-        {currentProject ? (
-          <div
-            style={{
-              height: (500 * window.innerWidth) / 1920,
-              width: (500 * window.innerWidth) / 1920,
-              backgroundColor: "white",
-            }}
-          >
-            <iframe
-              src="https://project3852.wordpress.com/"
-              width={"100%"}
-              height={"100%"}
-            ></iframe>
-          </div>
-        ) : (
-          "select project to view"
-        )}
+        {currentProject
+          ? // <div
+            //   style={{
+            //     height: (500 * window.innerWidth) / 1920,
+            //     width: (500 * window.innerWidth) / 1920,
+            //     backgroundColor: "white",
+            //   }}
+            // >
+            //   <iframe
+            //     src="https://project3852.wordpress.com/"
+            //     width={"100%"}
+            //     height={"100%"}
+            //   ></iframe>
+            // </div>
+            null
+          : "select project to view"}
       </div>
     </div>
   );
