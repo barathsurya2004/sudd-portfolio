@@ -12,9 +12,10 @@ const Projects = () => {
     currentProject,
     secondMargin,
   } = useContext(Context);
-  const [projectNumber, setProjectNumber] = useState(0);
+  const [projectNumber, setProjectNumber] = useState(null);
   const offset = useRef({ value: 0 });
   useEffect(() => {
+    if (projectNumber === null) return;
     const temp = document.getElementById(currentProject);
     const temp2 = document.getElementById("projects");
     if (!temp) {
@@ -71,7 +72,8 @@ const Projects = () => {
         },
       },
     });
-  });
+  }, []);
+  useGSAP(() => {}, [currentProject]);
   useEffect(() => {
     projects.forEach((project) => {
       gsap.to(`#${project.id}`, {
@@ -90,29 +92,64 @@ const Projects = () => {
           style={{
             width: "100%",
             position: "relative",
+            minWidth: "50vh",
           }}
         >
           <div className="projects">
             {projects.map((project, index) => {
               return (
-                <div
-                  className="project"
-                  id={project.id}
-                  style={{
-                    cursor: "pointer",
-                    color: currentColor.prim,
-                  }}
-                  onClick={() => {
-                    setProjectNumber(index);
-                    if (currentProject === project.id) {
-                      setCurrentProject(null);
-                      return;
-                    }
-                    setCurrentProject(project.id);
-                  }}
-                >
-                  {project.title}
-                </div>
+                <>
+                  <div
+                    className="project"
+                    id={project.id}
+                    style={{
+                      cursor: "pointer",
+                      color: currentColor.prim,
+                      fontSize: (76 * window.innerWidth) / 750,
+                    }}
+                    onClick={() => {
+                      setProjectNumber(index);
+                      if (currentProject === project.id) {
+                        setCurrentProject(null);
+                        return;
+                      }
+                      setCurrentProject(project.id);
+                    }}
+                  >
+                    {project.title}
+                  </div>
+                  <div
+                    className="current-project-mobile"
+                    style={{
+                      position: "relative",
+                      // height: "100%",
+                      // top: (323.3 * window.innerHeight) / 1080,
+                      // paddingRight: (235.75 * window.innerWidth) / 1920,
+                      // marginTop: offset.value,
+                      fontSize: (28 * window.innerWidth) / 1920,
+                      width: "100%",
+                      overflow: "hidden",
+                      opacity: 1,
+                    }}
+                  >
+                    {currentProject && currentProject === project.id
+                      ? tempCurProject.project.map((proj, index) => {
+                          return (
+                            <div>
+                              <h1
+                                style={{
+                                  fontSize: (28 * window.innerWidth) / 1920,
+                                }}
+                              >
+                                {proj.text}
+                              </h1>
+                              <img src={proj.image} />
+                            </div>
+                          );
+                        })
+                      : null}
+                  </div>
+                </>
               );
             })}
           </div>

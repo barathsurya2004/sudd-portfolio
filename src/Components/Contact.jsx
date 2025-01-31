@@ -16,7 +16,7 @@ const Contact = () => {
     thirdMargin,
   } = useContext(Context);
   const [disclaimer, setDisclaimer] = useState(false);
-  const [selfPortrait, setSelfPortrait] = useState("");
+  const [selfPortrait, setSelfPortrait] = useState("https://picsum.photos/200");
   useGSAP(() => {
     gsap.to(".contact", {
       scrollTrigger: {
@@ -33,21 +33,21 @@ const Contact = () => {
       },
     });
   });
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await axios.get(url + "get-all-images");
-        console.log(response.data);
-        const temp = googleUrl + response.data.imageid;
-        setSelfPortrait(temp);
-        console.log(temp);
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchImages = async () => {
+  //     try {
+  //       const response = await axios.get(url + "get-all-images");
+  //       console.log(response.data);
+  //       const temp = googleUrl + response.data.imageid;
+  //       setSelfPortrait(temp);
+  //       console.log(temp);
+  //     } catch (error) {
+  //       console.error("Error fetching images:", error);
+  //     }
+  //   };
 
-    fetchImages();
-  }, []);
+  //   fetchImages();
+  // }, []);
   useEffect(() => {
     const element = document.querySelector(".disclaimer");
     gsap.set(".disclaimer-text", {
