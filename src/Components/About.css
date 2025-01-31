@@ -20,8 +20,9 @@
   font-size: 48px;
 } */
 .about-text-container {
-  padding-left: var(--third-margin);
-  padding-right: calc(245 * 100vw / 1920);
+  /* padding-left: var(--third-margin); */
+  /* padding-right: calc(245 * 100vw / 1920); */
+  top: var(--top-margin);
   font-size: 16px;
 }
 

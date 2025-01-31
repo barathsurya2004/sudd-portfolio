@@ -8,21 +8,21 @@ import { url } from "../content";
 import axios from "axios";
 
 gsap.registerPlugin(ScrollTrigger);
-// import { about } from "../content";
+import { about } from "../content";
 
 const About = () => {
   const { currentColor, setCurrentView, secondMargin, thirdMargin, ratio } =
     useContext(Context);
-  const [about, setAbout] = useState(["", ""]);
-  useEffect(() => {
-    const afunc = async () => {
-      const response = await axios.get(
-        url + "get-all-texts/" + "675691b11ba213b1cf3577df"
-      );
-      setAbout([response.data.texts.text1, response.data.texts.text2]);
-    };
-    afunc();
-  }, []);
+  // const [about, setAbout] = useState(["", ""]);
+  // useEffect(() => {
+  //   const afunc = async () => {
+  //     const response = await axios.get(
+  //       url + "get-all-texts/" + "675691b11ba213b1cf3577df"
+  //     );
+  //     setAbout([response.data.texts.text1, response.data.texts.text2]);
+  //   };
+  //   afunc();
+  // }, []);
   useGSAP(() => {
     gsap.to(".about", {
       scrollTrigger: {
@@ -118,20 +118,25 @@ const About = () => {
     );
   }
   return (
-    <div className="about-container-all">
+    <div
+      className="about-container-all"
+      style={{
+        display: "flex",
+      }}
+    >
       <div
         className="about-container"
         id="about"
         style={{
-          height: "50vh",
-          width: "100%",
+          minHeight: "100vh",
+          width: "50%",
           position: "relative",
         }}
       >
         <div
           className="about"
           style={{
-            position: "absolute",
+            position: "relative",
             // paddingLeft: (500 * window.innerWidth) / 1920,
             // transform: "translateY(-25%)",
             color: currentColor.prim,
@@ -151,12 +156,14 @@ const About = () => {
       </div>
       <div
         className="about-text-container"
-        style={
-          {
-            // fontSize: (28 * window.innerWidth) / 1920,
-            // color: "#495f8c",
-          }
-        }
+        style={{
+          // fontSize: (28 * window.innerWidth) / 1920,
+          // color: "#495f8c",
+          position: "relative",
+
+          padding: (90.2 * window.innerHeight) / 1080,
+          width: "50%",
+        }}
       >
         <div
           className="about-text"
