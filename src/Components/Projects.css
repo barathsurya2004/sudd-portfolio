@@ -15,7 +15,7 @@
   /* width: 65vw; */
   /* padding-left: var(--second-margin); */
   position: relative;
-  /* left: var(--second-margin); */
+  left: var(--second-margin);
 }
 .current-project {
   /* top: var(--top-margin);
@@ -26,14 +26,16 @@
   .projects-container {
     padding-left: var(--first-margin);
     padding-right: var(--first-margin);
-    min-height: 100vh;
+    left: 0;
+
+    min-height: 100dvh;
   }
   .projects {
     display: flex;
     flex-direction: column;
 
-    padding-top: calc(67 * 100vh / 750);
-    padding-bottom: calc(110 * 100vh / 750);
+    padding-top: calc(67 * 100dvh / 750);
+    padding-bottom: calc(110 * 100dvh / 750);
     width: 100%;
   }
   .project p {

@@ -47,7 +47,7 @@ const About = () => {
           className="about-container"
           id="about"
           style={{
-            // height: "100vh",
+            // height: "100dvh",
             width: "100%",
             position: "relative",
             color: currentColor.prim,
@@ -128,7 +128,7 @@ const About = () => {
         className="about-container"
         id="about"
         style={{
-          minHeight: "100vh",
+          minHeight: "100dvh",
           width: "50%",
           position: "relative",
         }}

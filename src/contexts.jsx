@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
 export const Context = createContext({
@@ -31,23 +32,52 @@ export const ContextProvider = ({ children }) => {
     sec: "#f5f7ff",
   });
   const [colorIndex, setColorIndex] = useState(0);
-  const colors = [
+  const [colors, setColors] = useState([
     {
       prim: "#3c4e73",
       sec: "#f5f7ff",
     },
-    {
-      prim: "#f5f5f5",
-      sec: "#141414",
-    },
-    {
-      prim: "#141414",
-      sec: "#f5f5f5",
-    },
-  ];
+  ]);
+  useEffect(() => {
+    var temp = [];
+    axios
+      .get(
+        import.meta.env.VITE_SERVER_URL +
+          "/api/get-all-colors/" +
+          import.meta.env.VITE_ID
+      )
+      .then((res) => {
+        console.log("res", res.data);
+        temp.push({
+          prim: res.data.colors.primary1,
+          sec: res.data.colors.secondary1,
+        });
+        temp.push({
+          prim: res.data.colors.primary2,
+          sec: res.data.colors.secondary2,
+        });
+        temp.push({
+          prim: res.data.colors.primary3,
+          sec: res.data.colors.secondary3,
+        });
+        temp.push({
+          prim: res.data.colors.primary4,
+          sec: res.data.colors.secondary4,
+        });
+        temp.push({
+          prim: res.data.colors.primary5,
+          sec: res.data.colors.secondary5,
+        });
+        setColors(temp);
+        // setcurcol(temp[0]);
+      });
+  }, []);
   const setCurrentColor = () => {
     console.log("colorIndex", colorIndex);
     setColorIndex((colorIndex + 1) % colors.length);
+    if (colors[colorIndex] === undefined) {
+      return;
+    }
     setcurcol(colors[colorIndex]);
   };
   useEffect(() => {

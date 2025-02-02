@@ -25,8 +25,8 @@
   }
   .loading-text-container {
     flex-direction: column;
-    padding-top: calc(135 * 100vh / 748);
-    padding-bottom: calc(180 * 100vh / 748);
+    padding-top: calc(135 * 100dvh / 748);
+    padding-bottom: calc(180 * 100dvh / 748);
   }
   .loading-container p {
     font-size: 40px;

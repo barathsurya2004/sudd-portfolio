@@ -89,6 +89,7 @@ const Loading = () => {
         }
       },
       onUpdate: () => {
+        window.scrollTo(0, 0);
         setLoaded({ value: loaded.value });
         if (loaded.value < 100) {
           setPosition({ value: loaded.value });
@@ -111,21 +112,11 @@ const Loading = () => {
           },
         });
         setLoading(false);
-        gsap.fromTo(
-          ".hero",
-          {
-            y: "100vh",
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-          }
-        );
+
         gsap.fromTo(
           ".navbar",
           {
-            y: "100vh",
+            y: "100dvh",
           },
           {
             opacity: 1,
@@ -141,7 +132,7 @@ const Loading = () => {
       <div
         className="loading-container"
         style={{
-          height: "100vh",
+          height: "100dvh",
           width: "100%",
           // fontFamily: "neue-haas",
           position: "fixed",
@@ -209,7 +200,7 @@ const Loading = () => {
     <div
       className="loading-container"
       style={{
-        height: "100vh",
+        height: "100dvh",
         width: "100%",
         // fontFamily: "neue-haas",
         position: "fixed",

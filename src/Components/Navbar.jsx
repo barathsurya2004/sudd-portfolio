@@ -10,7 +10,7 @@ const Navbar = () => {
     useContext(Context);
   useEffect(() => {
     gsap.set(".navbar", {
-      y: "100vh",
+      y: "100dvh",
     });
   }, []);
   useEffect(() => {

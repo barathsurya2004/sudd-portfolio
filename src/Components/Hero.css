@@ -25,7 +25,7 @@
 @media screen and (max-width: 500px) {
   .hero {
     /* padding-left: var(--first-margin); */
-    font-size: 40px;
+    font-size: 38px;
   }
   .hero-text-container {
     width: 80%;

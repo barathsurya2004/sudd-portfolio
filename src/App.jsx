@@ -16,9 +16,6 @@ const App = () => {
   const { currentColor, setCurrentView, currentView, ratio } =
     useContext(Context);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <div
       className="App"

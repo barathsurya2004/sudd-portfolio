@@ -14,9 +14,12 @@ const Contact = () => {
     setCurrentView,
     secondMargin,
     thirdMargin,
+    firstMargin,
+    ratio,
   } = useContext(Context);
   const [disclaimer, setDisclaimer] = useState(false);
   const [selfPortrait, setSelfPortrait] = useState("https://picsum.photos/200");
+  const [positionForDisclaimer, setPositionForDisclaimer] = useState([0, 0]);
   useGSAP(() => {
     gsap.to(".contact", {
       scrollTrigger: {
@@ -50,9 +53,19 @@ const Contact = () => {
   // }, []);
   useEffect(() => {
     const element = document.querySelector(".disclaimer");
-    gsap.set(".disclaimer-text", {
-      y: element.clientHeight,
-    });
+    setTimeout(() => {
+      gsap.set(".disclaimer-text", {
+        y: element.clientHeight,
+      });
+    }, 1000);
+    const element2 = document.querySelector(".footer-text-mobile");
+
+    setTimeout(() => {
+      setPositionForDisclaimer([
+        window.innerHeight - element2.getBoundingClientRect().top,
+        element2.getBoundingClientRect().left,
+      ]);
+    }, 1000);
   }, []);
   if (window.innerWidth <= 1000) {
     return (
@@ -60,11 +73,21 @@ const Contact = () => {
         className="contact"
         style={{
           position: "relative",
-          overflow: "hidden",
+          height: "100dvh",
+          width: "100%",
+          // overflow: "hidden",
           color: currentColor.prim,
         }}
       >
-        <div className="photo-container">
+        <div
+          className="photo-container"
+          style={{
+            height: (400 * window.innerHeight) / 1080,
+            width: (300 * window.innerHeight) / 1080,
+            marginLeft: firstMargin / 5,
+            marginTop: firstMargin / 5,
+          }}
+        >
           <img src={selfPortrait} alt="" />
         </div>
         <div className="contact-container">
@@ -72,6 +95,7 @@ const Contact = () => {
             className="contact-text"
             style={{
               color: currentColor.prim,
+              fontSize: (200 * window.innerWidth) / 1920,
             }}
           >
             Drop a Hello!{" "}
@@ -85,6 +109,12 @@ const Contact = () => {
             <span
               style={{
                 color: currentColor.prim,
+                textDecoration: "none",
+              }}
+              onClick={() => {
+                window.open(
+                  "https://www.linkedin.com/in/sudhesh-venkatachalam-492b66205/"
+                );
               }}
             >
               Linkedin
@@ -92,6 +122,10 @@ const Contact = () => {
             <span
               style={{
                 color: currentColor.prim,
+                textDecoration: "none",
+              }}
+              onClick={() => {
+                window.open("mailto:sudheshhimself@gmail.com");
               }}
             >
               sudheshhimself@gmail.com
@@ -103,11 +137,13 @@ const Contact = () => {
           <p
             style={{
               color: currentColor.prim,
+              fontSize: (55 * window.innerWidth) / 1920,
             }}
           >
             Based of{" "}
             <span
               style={{
+                fontSize: (55 * window.innerWidth) / 1920,
                 color: currentColor.prim,
               }}
             >
@@ -116,6 +152,7 @@ const Contact = () => {
           </p>
           <p
             style={{
+              fontSize: (55 * window.innerWidth) / 1920,
               color: currentColor.prim,
             }}
           >
@@ -123,6 +160,7 @@ const Contact = () => {
             <span
               style={{
                 color: currentColor.prim,
+                fontSize: (55 * window.innerWidth) / 1920,
               }}
             >
               Salem, India
@@ -134,15 +172,20 @@ const Contact = () => {
             position: "absolute",
             top: 0,
             left: 0,
-            height: "100vh",
             width: "100%",
+            height: "100%",
           }}
         >
           <div
             className="disclaimer"
             style={{
-              // backgroundColor: "#ebefff",
-              // position: "absolute",
+              position: "absolute",
+              left: thirdMargin,
+              bottom:
+                (32 * window.innerHeight) / 800 +
+                (55 * window.innerWidth) / 1920,
+
+              width: "35%",
 
               maskImage:
                 "linear-gradient(0deg, rgba(0,176,218,0) 0%, rgba(0,212,255,0.5032387955182073) 2%, rgba(2,0,36,1) 5%, rgba(2,0,36,1) 95%, rgba(2,0,36,0.500437675070028) 97%, rgba(2,0,36,0) 100%)",
@@ -225,9 +268,10 @@ const Contact = () => {
         </div>
         <div
           style={{
+            fontSize: (45 * window.innerWidth) / 1920,
             color: currentColor.prim,
           }}
-          className="footer-text"
+          className="footer-text-mobile"
           onClick={() => {
             const element = document.querySelector(".disclaimer");
             console.log(element);
@@ -269,7 +313,7 @@ const Contact = () => {
         className="contact"
         id="contact-jump"
         style={{
-          height: "100vh",
+          height: "100dvh",
           width: "100%",
           overflow: "hidden",
           position: "relative",
@@ -279,7 +323,7 @@ const Contact = () => {
         <div
           className="contact-jump"
           style={{
-            height: "100vh",
+            height: "100dvh",
             width: "100%",
           }}
         >
@@ -420,7 +464,9 @@ const Contact = () => {
               position: "absolute",
               // zIndex: 10,
               bottom: (90.75 * window.innerHeight) / 1080,
-              paddingRight: (350 * window.innerWidth) / 1920,
+              right: (350 * window.innerWidth) / 1920,
+              // paddingRight: (350 * window.innerWidth) / 1920,
+              width: "25%",
               // backgroundColor: "#ebefff",
               maskImage:
                 "linear-gradient(0deg, rgba(0,176,218,0) 0%, rgba(0,212,255,0.5032387955182073) 2%, rgba(2,0,36,1) 5%, rgba(2,0,36,1) 95%, rgba(2,0,36,0.500437675070028) 97%, rgba(2,0,36,0) 100%)",

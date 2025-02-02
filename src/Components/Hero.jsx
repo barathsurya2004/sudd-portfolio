@@ -19,7 +19,7 @@ const Hero = () => {
     "a Synergy Designer.",
   ];
   useEffect(() => {
-    gsap.set(".hero", { y: "100vh" });
+    gsap.set(".hero", { y: "100dvh" });
   }, []);
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -45,6 +45,11 @@ const Hero = () => {
   });
   useEffect(() => {
     if (!loading) {
+      gsap.to(".hero", {
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+      });
       const mastertl = gsap.timeline({
         repeat: -1, // Loop infinitely
       });
@@ -103,7 +108,7 @@ const Hero = () => {
       style={{
         fontFamily: "neue-haas-grotesk-display",
         fontWeight: 900,
-        height: "100vh",
+        height: "100dvh",
         width: "100%",
         // display: "flex",
         // justifyContent: "center",

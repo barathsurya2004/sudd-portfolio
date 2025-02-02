@@ -92,7 +92,7 @@ const Projects = () => {
           style={{
             width: "100%",
             position: "relative",
-            minWidth: "50vh",
+            // minWidth: "50vh",
           }}
         >
           <div className="projects">
@@ -114,6 +114,13 @@ const Projects = () => {
                         return;
                       }
                       setCurrentProject(project.id);
+                      gsap.to(window, {
+                        duration: 0.5,
+                        scrollTo: {
+                          y: `#${project.id}`,
+                          offsetY: (100 * window.innerHeight) / 1080,
+                        },
+                      });
                     }}
                   >
                     {project.title}
@@ -163,7 +170,7 @@ const Projects = () => {
       className="projects"
       id="projects"
       style={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
         width: "100%",
         position: "relative",
         zIndex: 10,
@@ -175,7 +182,6 @@ const Projects = () => {
         style={{
           position: "relative",
           paddingTop: (323.3 * window.innerHeight) / 1080,
-          paddingLeft: secondMargin,
           width: "50%",
         }}
       >
